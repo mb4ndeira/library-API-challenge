@@ -4,7 +4,7 @@ import { IBooksRepository, IAddBookDTO } from './IBooksRepository'
 class BooksRepository implements IBooksRepository {
     private books: Book[] = []
 
-    private static INSTANCE: BooksRepository
+    public static INSTANCE: BooksRepository
 
     private constructor () {
       this.books = []
@@ -26,3 +26,5 @@ class BooksRepository implements IBooksRepository {
       this.books.push(book)
     }
 }
+
+export { BooksRepository }
