@@ -26,7 +26,7 @@ class BooksRepository implements IBooksRepository {
     this.books.push({ ...book })
   }
 
-  getBooksWithTitle ({ title }: IGetBooksWithTitle): Book[] {
+  getAllWithTitle ({ title }: IGetBooksWithTitle): Book[] {
     const booksWithTitle = this.books.filter(book => book.title === title)
     return booksWithTitle
   }

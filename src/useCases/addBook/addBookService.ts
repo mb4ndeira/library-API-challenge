@@ -12,7 +12,7 @@ class AddBookService {
   constructor (private booksRepository: IBooksRepository) {}
 
   execute ({ title, authors, image, publisher }: IRequest): void {
-    const booksWithThisTitle = this.booksRepository.getBooksWithTitle({ title })
+    const booksWithThisTitle = this.booksRepository.getAllWithTitle({ title })
 
     const bookAlreadyRegistered = booksWithThisTitle.find(book => authors.filter(author => authors.includes(author)))
 
