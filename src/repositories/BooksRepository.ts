@@ -1,30 +1,35 @@
 import { Book } from '../models/Book'
-import { IBooksRepository, IAddBookDTO } from './IBooksRepository'
+import { IBooksRepository, IAddBookDTO, IGetBooksWithTitle } from './IBooksRepository'
 
 class BooksRepository implements IBooksRepository {
-    private books: Book[] = []
+  private books: Book[] = []
 
-    public static INSTANCE: BooksRepository
+  public static INSTANCE: BooksRepository
 
-    private constructor () {
-      this.books = []
+  private constructor () {
+    this.books = []
+  }
+
+  public static getInstance (): BooksRepository {
+    if (!BooksRepository.INSTANCE) {
+      BooksRepository.INSTANCE = new BooksRepository()
     }
 
-    public static getInstance (): BooksRepository {
-      if (!BooksRepository.INSTANCE) {
-        BooksRepository.INSTANCE = new BooksRepository()
-      }
+    return BooksRepository.INSTANCE
+  }
 
-      return BooksRepository.INSTANCE
-    }
+  add ({ title, publisher, authors, image }: IAddBookDTO): void {
+    const book = new Book()
 
-    add ({ title, publisher, authors, image }: IAddBookDTO): void {
-      const book = new Book()
+    Object.assign(book, { title, publisher, authors, image })
 
-      Object.assign(book, { title, publisher, authors, image })
+    this.books.push(book)
+  }
 
-      this.books.push(book)
-    }
+  getBooksWithTitle ({ title }: IGetBooksWithTitle): Book[] {
+    const booksWithTitle = this.books.filter(book => book.title === title)
+    return booksWithTitle
+  }
 }
 
 export { BooksRepository }

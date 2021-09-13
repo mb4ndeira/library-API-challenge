@@ -1,3 +1,5 @@
+import { Book } from '../models/Book'
+
 interface IAddBookDTO {
     title:string;
     publisher:string;
@@ -5,8 +7,13 @@ interface IAddBookDTO {
     authors:string[];
 }
 
-interface IBooksRepository {
-    add({ title, publisher, image, authors }: IAddBookDTO): void
+interface IGetBooksWithTitle {
+    title:string;
 }
 
-export { IBooksRepository, IAddBookDTO }
+interface IBooksRepository {
+    add({ title, publisher, image, authors }: IAddBookDTO): void
+    getBooksWithTitle({ title }: IGetBooksWithTitle): Book[]
+}
+
+export { IBooksRepository, IAddBookDTO, IGetBooksWithTitle }
