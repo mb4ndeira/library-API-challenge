@@ -1,9 +1,11 @@
 import { Router } from 'express'
 
+import { addBookController } from 'src/useCases/addBook'
+
 const booksRoutes = Router()
 
-booksRoutes.get('/', (request, response) => {
-  return response.send('get books')
+booksRoutes.post('/', (request, response) => {
+  return addBookController.handle(request, response)
 })
 
 export { booksRoutes }
