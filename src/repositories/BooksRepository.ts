@@ -23,7 +23,7 @@ class BooksRepository implements IBooksRepository {
 
     Object.assign(book, { title, publisher, authors, image })
 
-    this.books.push(book)
+    this.books.push({ ...book })
   }
 
   getBooksWithTitle ({ title }: IGetBooksWithTitle): Book[] {
