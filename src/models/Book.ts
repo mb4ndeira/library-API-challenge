@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid'
 
 class Book {
-    id?:number;
+    id?:string;
     title:string;
     publisher:string;
     image:string;
