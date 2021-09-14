@@ -14,9 +14,11 @@ class AddBookService {
   execute ({ title, authors, image, publisher }: IRequest): void {
     const booksWithThisTitle = this.booksRepository.getAllWithTitle({ title })
 
-    const bookAlreadyRegistered = booksWithThisTitle.find(book => authors.filter(author => authors.includes(author)))
+    if (booksWithThisTitle.length > 0) {
+      const bookAlreadyRegistered = booksWithThisTitle.find(book => book.authors.filter(author => authors.includes(author)).length > 0)
 
-    if (bookAlreadyRegistered) throw new Error('Book is already registered')
+      if (bookAlreadyRegistered) throw new Error('Book is already registered')
+    }
 
     this.booksRepository.add({ title, authors, image, publisher })
   }
