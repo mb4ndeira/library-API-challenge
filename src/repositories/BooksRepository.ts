@@ -30,6 +30,10 @@ class BooksRepository implements IBooksRepository {
     const booksWithTitle = this.books.filter(book => book.title === title)
     return booksWithTitle
   }
+
+  getAll (): Book[] {
+    return this.books
+  }
 }
 
 export { BooksRepository }

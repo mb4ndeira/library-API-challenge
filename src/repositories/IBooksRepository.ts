@@ -13,6 +13,7 @@ interface IGetBooksWithTitle {
 
 interface IBooksRepository {
     add({ title, publisher, image, authors }: IAddBookDTO): void
+    getAll(): Book[]
     getAllWithTitle({ title }: IGetBooksWithTitle): Book[]
 }
 
