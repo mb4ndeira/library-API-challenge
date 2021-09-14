@@ -8,7 +8,7 @@ class ListBooksController {
   handle (request: Request, response: Response) {
     const books = this.listBooksService.execute()
 
-    return response.json(books)
+    return response.status(200).json(books)
   }
 }
 
