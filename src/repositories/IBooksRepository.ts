@@ -7,14 +7,16 @@ interface IAddBookDTO {
     authors:string[];
 }
 
-interface IGetBooksWithTitle {
+interface IGetAllWithTitleDTO {
     title:string;
 }
 
 interface IBooksRepository {
     add({ title, publisher, image, authors }: IAddBookDTO): void
+    findById(id: string): Book
     getAll(): Book[]
-    getAllWithTitle({ title }: IGetBooksWithTitle): Book[]
+    delete(id: string): void
+    getAllWithTitle({ title }: IGetAllWithTitleDTO): Book[]
 }
 
-export { IBooksRepository, IAddBookDTO, IGetBooksWithTitle }
+export { IBooksRepository, IAddBookDTO, IGetAllWithTitleDTO }

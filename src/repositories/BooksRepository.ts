@@ -1,5 +1,5 @@
 import { Book } from '../models/Book'
-import { IBooksRepository, IAddBookDTO, IGetBooksWithTitle } from './IBooksRepository'
+import { IBooksRepository, IAddBookDTO, IGetAllWithTitleDTO } from './IBooksRepository'
 
 class BooksRepository implements IBooksRepository {
   private books: Book[] = []
@@ -26,13 +26,23 @@ class BooksRepository implements IBooksRepository {
     this.books.push({ ...book })
   }
 
-  getAllWithTitle ({ title }: IGetBooksWithTitle): Book[] {
+  getAllWithTitle ({ title }: IGetAllWithTitleDTO): Book[] {
     const booksWithTitle = this.books.filter(book => book.title === title)
     return booksWithTitle
   }
 
   getAll (): Book[] {
     return this.books
+  }
+
+  delete (id: string): void {
+    const newBooks = this.books.filter(book => book.id !== id)
+
+    this.books = newBooks
+  }
+
+  findById (id: string): Book {
+    return this.books.find(book => book.id === id)
   }
 }
 
