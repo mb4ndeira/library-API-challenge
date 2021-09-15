@@ -41,6 +41,14 @@ class BooksRepository implements IBooksRepository {
     this.books = newBooks
   }
 
+  update ({ id, title, publisher, authors, image }: IUpdateBookDTO): Book {
+    const book = { ...this.books.find(book => book.id === id), title, publisher, authors, image }
+
+    this.books[this.books.findIndex(book => book.id === id)] = book
+
+    return book
+  }
+
   findById (id: string): Book {
     return this.books.find(book => book.id === id)
   }
